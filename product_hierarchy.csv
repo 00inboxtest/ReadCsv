@@ -1,4 +1,5 @@
 product_id,product_length,product_depth,product_width,cluster_id,hierarchy1_id,hierarchy2_id,hierarchy3_id,hierarchy4_id,hierarchy5_id
+P0000,5.0,20.0,12.0,,H00,H0004,H000401,H00040105,H0004010534
 P0001,13.5,22.0,20.0,cluster_5,H01,H0105,H010501,H01050100,H0105010006
 P0002,22.0,40.0,22.0,cluster_0,H03,H0315,H031508,H03150800,H0315080028
 P0004,2.0,13.0,4.0,cluster_3,H03,H0314,H031405,H03140500,H0314050003
