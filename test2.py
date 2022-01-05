@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def query_records():
     name = request.args.get('name')
-    print name
+    # print name
     with open('/tmp/data.txt', 'r') as f:
         data = f.read()
         records = json.loads(data)
