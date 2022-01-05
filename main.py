@@ -60,7 +60,7 @@ def getcitydata_storetype_records():
         store_ids.append(x['store_id'])
     print(store_ids)
 
-    salesData = pd.read_csv('sales.csv',nrows=1200)
+    salesData = pd.read_csv('sales.csv')
     
     # date filter
     date_filter=salesData['date'].between(args['start_date'],args['end_date'])
@@ -69,15 +69,20 @@ def getcitydata_storetype_records():
     #store filter
     store_filter=salesData.store_id.isin(store_ids)
     salesData=salesData[store_filter]
-    
-    salesData = salesData.to_dict('records')
 
-    print('salesDataAFTER',date_filter)
+    #sum of revenu and sales
+    sum_revenue=salesData['revenue'].sum()
+    sum_sales=salesData['sales'].sum()
+
+    #output
+    salesData = salesData.to_dict('records')
 
     return jsonify({
             'code': 200,
             'store_ids': store_ids,
-            'xsalesData': salesData
+            'xsalesData': salesData,
+            'sum_revenue':sum_revenue,
+            'sum_sales':sum_sales
           })
 
 if __name__ == '__main__':
