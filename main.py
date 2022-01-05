@@ -50,32 +50,34 @@ def getcitydata_storetype_records():
     parser.add_argument('start_date', required=True)
     parser.add_argument('end_date', required=True)
     args = parser.parse_args()
-    data = pd.read_csv('store_cities.csv',nrows=50)        
+
+    data = pd.read_csv('store_cities.csv')        
     data = data [(data ["city_id"] == args['city_id'])]
     data = data.to_dict('records')
     store_ids=[]
+
     for x in data:
         store_ids.append(x['store_id'])
-    # print(store_ids)
+    print(store_ids)
 
-    salesData = pd.read_csv('sales.csv',nrows=200)
-    # salesData.head()
-    print('store_ids',store_ids)
-
-    print('salesData',salesData)
-    # salesData['date']=salesData['date']
-    # salesData['date'] = pd.to_datetime(salesData['date'])
-    # newdf = salesData['date'] = args['start_date'] #& (salesData['date'] <= args['end_date'])
-    salesData[salesData.store_id.isin(store_ids)]
-    # newdf = salesData.loc[newdf]
-    # salesData = salesData [(salesData ["city_id"] == args['city_id'])]
+    salesData = pd.read_csv('sales.csv',nrows=1200)
+    
+    # date filter
+    date_filter=salesData['date'].between(args['start_date'],args['end_date'])
+    salesData=salesData[date_filter]
+    
+    #store filter
+    store_filter=salesData.store_id.isin(store_ids)
+    salesData=salesData[store_filter]
+    
     salesData = salesData.to_dict('records')
+
+    print('salesDataAFTER',date_filter)
 
     return jsonify({
             'code': 200,
             'store_ids': store_ids,
-            # 'cityData' : data,
-            'salesData': salesData
+            'xsalesData': salesData
           })
 
 if __name__ == '__main__':
