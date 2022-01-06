@@ -1,3 +1,58 @@
-pip3 install flask
-pip3 install flask_restful
-pip3 install pandas
+Case Study
+
+Read and understand the use case, assume any missing data/information, if necessary, build a 
+python application. Zip and share the files with us once done within specified time. Please download 
+the mentioned dataset from Kaggle before starting with this exercise. Read and understand the ‘file’
+and ‘column’ descriptions provided on Kaggle. 
+Dataset: https://www.kaggle.com/berkayalan/retail-sales-data
+If you do not have a python runtime locally installed, you can choose to use Google Colaboratory
+Notebooks (https://colab.research.google.com/) or something similar. 
+We do not expect you to spend more than 4 – 6 hours to solve this use case.
+
+Requirements
+1. Build a python application which can read from provided datasets and based on the user’s 
+input, aggregate the data accordingly and return the value back to the user. It would be 
+good if you can create a REST API interface for your python application.
+User can possibly ask for:
+• Total Sales quantity and revenue for Specific product hierarchy1_id and specified date range ->
+
+ApiName:http://127.0.0.1:5000/getproduct_hierarchywise
+
+parameters: {"hierarchy1_id":"H00","start_date":"2017-01-03","end_date":"2017-01-03"}
+
+• Total Sales quantity and revenue for Specific city id and specified date range ->
+
+ApiName:http://127.0.0.1:5000/getcity_storetypedata
+parameters: {"city_id":"C013","start_date":"2017-01-03","end_date":"2017-01-03"}
+
+• Total volume (using provided product dimensions multiplied by quantity) of a specific product for specified data range.
+->
+ApiName:http://127.0.0.1:5000/getsale_productdata
+parameters: {"product_id":"P0001","start_date":"2017-01-03","end_date":"2017-01-03"}
+
+
+Bonus Question:
+• Assuming the Region to be Sweden, calculate Total revenue on 2018 Public holiday 
+dates. You can choose to either web scrape or download public holidays for 2018.->
+refernce 
+https://pypi.org/project/holidays/
+
+
+Example Input to the application:
+    {“hierarchy1_id” : “H03” , “start_date” : “2017-09-01” , “end_date” : “2017-09-10” }
+    Example Output :
+    {“Quantity” : “200” , “Revenue” : “4500” }
+
+You can choose to use JSON or any other format you prefer.
+
+Optional Step:
+Containerize this application, the application should be executable with a docker run 
+command. Zip it, and share your code with us, including app.py, requirements, docker file 
+and any other files you created.
+-> i don't have much experience of docker so i cannot create the docker images
+
+2. If there is a requirement to deploy the above application on GCP, which services will you 
+prefer to use and why ? ->
+I am preferring the App Engine for this application for deployment purposes. 
+because these application need less infrastructure so i go with App Engine platform
+
